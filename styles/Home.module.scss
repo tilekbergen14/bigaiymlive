@@ -1,0 +1,88 @@
+@import "colors.scss";
+
+.header {
+  background-color: rgb(66, 109, 66);
+  min-height: 450px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.nav {
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+  display: flex;
+  height: 66px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  transition: all 0.3s ease-in;
+}
+.active {
+  background-color: $primary-color;
+}
+.logo {
+  color: $primary-text;
+}
+.lists {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  color: $primary-text;
+}
+.list {
+  margin-left: 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  &:hover {
+    color: $secondary-text;
+    cursor: pointer;
+  }
+}
+.headerBox {
+  max-width: 600px;
+  margin: 0 auto;
+  z-index: 1;
+  padding: 0 16px;
+}
+.headerText {
+  color: $primary-text;
+  font-size: 2rem;
+}
+.searchBox {
+  background-color: $primary-text;
+  height: 50px;
+  width: 100%;
+  border-radius: 10px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.searchInput {
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: $grey;
+}
+.background {
+  object-fit: cover;
+}
+.icon {
+  color: $grey;
+  cursor: pointer;
+}
+/*body*/
+.body {
+  background-color: rgb(223, 228, 233);
+  padding: 0 16px;
+}
+.images {
+  display: block;
+  flex-wrap: wrap;
+  column-gap: 0;
+  column-count: 4;
+}

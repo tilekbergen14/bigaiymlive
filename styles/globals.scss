@@ -1,0 +1,35 @@
+@import "colors.scss";
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+* {
+  box-sizing: border-box;
+}
+.button {
+  background-color: transparent;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  outline: none;
+  border: 0.15em solid $secondary-color;
+  color: $secondary-color;
+  box-shadow: inset 0 0 0.5em $secondary-color, 0 0 16px $secondary-color;
+  text-shadow: 0 0 5px $secondary-color, 0 0 5px $secondary-color;
+  &:hover {
+    color: $primary-text;
+    background-color: $secondary-color;
+    box-shadow: 0 0 20px $secondary-color;
+  }
+}
+img {
+  height: auto;
+  width: 100%;
+}
