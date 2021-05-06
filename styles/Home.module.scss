@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  transition: all 0.3s ease-in;
+ 
 }
 .active {
   background-color: $primary-color;
@@ -72,17 +72,49 @@
   object-fit: cover;
 }
 .icon {
-  color: $grey;
+  color: $grey !important;
   cursor: pointer;
+}
+.imgIcon{
+  color: $primary-text ;
+  cursor: pointer;
+  margin: 0 0.5em;
+  font-size: 1.2rem;
+  &:hover{
+    color: $secondary-text;
+  }
 }
 /*body*/
 .body {
-  background-color: rgb(223, 228, 233);
   padding: 0 16px;
 }
 .images {
-  display: block;
-  flex-wrap: wrap;
-  column-gap: 0;
-  column-count: 4;
+  position: relative;
+  column-count: 3;
+  column-gap: 16px;
+}
+.imageBox{
+  display: inline-block;
+  margin-bottom: 12px;
+  position: relative;
+  &:hover{
+    cursor: pointer;
+    .imageActions{
+      display: flex;
+      background: linear-gradient(90deg, rgba($color: #000000, $alpha: 0.2), rgba($color: #ffffff, $alpha: 0));
+    }
+  }
+}
+.img{
+  width: 100%;
+}
+.imageActions{
+  position: absolute;
+  bottom: 0;
+  display: none;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 8px;
+  transition: 0.5 all ease;
+  margin-bottom: 8px;
 }

@@ -2,7 +2,7 @@ import styles from "../styles/Home.module.scss";
 import { FaSearch } from "react-icons/fa";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import ImageComponent from "../components/Image";
+import ImageComponent from "../components/Image"
 
 export default function Home() {
   const [changeColor, setChangeColor] = useState(false);
@@ -52,11 +52,18 @@ export default function Home() {
         </div>
       </header>
       <section className={styles.body}>
-        <h3>Photos</h3>
+        <h3 className="title">Photos</h3>
         <div className={styles.images}>
           <ImageComponent image="/city2.jpg" />
           <ImageComponent image="/boywithbike.jpg" />
-          <ImageComponent image="/nightsky.png" />
+          <ImageComponent image="/building.jpg" />
+          <ImageComponent image="/boywithbike.jpg" />
+          <ImageComponent image="/city2.jpg" />
+          <ImageComponent image="/city2.jpg" />
+          <ImageComponent image="/boywithbike.jpg" />
+          <ImageComponent image="/building.jpg" />
+          <ImageComponent image="/boywithbike.jpg" />
+          <ImageComponent image="/city2.jpg" />
         </div>
       </section>
     </div>
