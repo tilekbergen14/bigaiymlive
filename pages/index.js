@@ -1,22 +1,10 @@
 import styles from "../styles/Home.module.scss";
 import { FaSearch } from "react-icons/fa";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import ImageComponent from "../components/Image"
+import ImageComponent from "../components/Image";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
-  const [changeColor, setChangeColor] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY < 100) {
-        setChangeColor(false);
-      } else {
-        setChangeColor(true);
-      }
-    });
-  }, []);
-
   return (
     <div className={styles.homepage}>
       <header className={styles.header}>
@@ -26,18 +14,7 @@ export default function Home() {
           layout="fill"
           className={styles.background}
         />
-        <nav
-          className={
-            !changeColor ? styles.nav : `${styles.nav} ${styles.active}`
-          }
-        >
-          <h2 className={styles.logo}>Bigaiym</h2>
-          <ul className={styles.lists}>
-            <li className={styles.list}>Explore</li>
-            <li className={styles.list}>Contact Us</li>
-            <button className={`${styles.list} button`}>Login</button>
-          </ul>
-        </nav>
+        <Navbar />
         <div className={styles.headerBox}>
           <h1 className={styles.headerText}>
             The best free stock photos and videos shared by talented creators.

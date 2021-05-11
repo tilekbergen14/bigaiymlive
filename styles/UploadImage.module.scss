@@ -1,0 +1,8 @@
+@import "./Colors.scss";
+.body {
+  background-color: $primary-color;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
