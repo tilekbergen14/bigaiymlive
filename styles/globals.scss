@@ -35,4 +35,7 @@ img {
 }
 .title {
   font-size: 1.3rem;
+  width: max-content;
+  color: $primary-color;
+  border-bottom: 3px solid $primary-color;
 }

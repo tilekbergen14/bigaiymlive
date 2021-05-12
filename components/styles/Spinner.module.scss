@@ -1,0 +1,52 @@
+@import "../../styles/Colors.scss";
+
+.spinner {
+  position: relative;
+}
+.first {
+  border: 10px solid transparent;
+  border-radius: 50%;
+  border-top-color: $primary-color;
+  position: absolute;
+  animation: spinFirst 1.2s linear infinite;
+  height: 100%;
+  width: 100%;
+}
+.second {
+  height: 100%;
+  width: 100%;
+  border: 10px solid transparent;
+  border-radius: 50%;
+  border-bottom-color: $primary-color;
+  position: absolute;
+  animation: spinSecond 1.2s linear infinite;
+}
+
+@keyframes spinFirst {
+  0% {
+    transform: rotate(0deg);
+    border-width: 10px;
+  }
+  50% {
+    transform: rotate(180deg);
+    border-width: 1px;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-width: 10px;
+  }
+}
+@keyframes spinSecond {
+  0% {
+    transform: rotate(0deg);
+    border-width: 1px;
+  }
+  50% {
+    transform: rotate(180deg);
+    border-width: 10px;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-width: 1px;
+  }
+}

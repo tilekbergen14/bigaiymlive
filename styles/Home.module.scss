@@ -72,16 +72,11 @@
     cursor: pointer;
     .imageActions {
       display: flex;
-      background: linear-gradient(
-        90deg,
-        rgba($color: #000000, $alpha: 0.2),
-        rgba($color: #ffffff, $alpha: 0)
-      );
     }
   }
 }
 .img {
-  width: 100%;
+  width: 100% !important;
 }
 .imageActions {
   position: absolute;
@@ -92,4 +87,14 @@
   padding: 8px;
   transition: 0.5 all ease;
   margin-bottom: 8px;
+}
+
+@media screen and (max-width: 992px) {
+  .images {
+    column-count: 2;
+    column-gap: 11px;
+  }
+  .imageBox {
+    margin-bottom: 6px;
+  }
 }

@@ -1,4 +1,5 @@
-@import "colors.scss";
+@import "../../styles/Colors.scss";
+
 @mixin flexAlignCenter($direction, $alignItems, $justifyContent) {
   display: flex;
   flex-direction: $direction;
@@ -19,6 +20,7 @@
   background-color: $primary-color;
 }
 .logo {
+  cursor: pointer;
   color: $primary-text;
 }
 .lists {
@@ -33,5 +35,14 @@
   &:hover {
     color: $secondary-text;
     cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .list {
+    display: none;
+  }
+  .show {
+    display: block;
   }
 }

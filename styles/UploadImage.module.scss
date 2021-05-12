@@ -1,8 +1,85 @@
 @import "./Colors.scss";
 .body {
-  background-color: $primary-color;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
+}
+.form {
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+  box-shadow: 0 0 10px $primary-color;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+}
+.displaynone {
+  display: none;
+}
+.imageInput {
+  display: flex;
+  align-items: center;
+}
+.imageIcon {
+  font-size: 2rem;
+  cursor: pointer;
+}
+.imageText {
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.tagsInput {
+  outline: none;
+  border: 2px solid $primary-color;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+.button {
+  margin: 1rem 0;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  background-color: $secondary-color;
+  color: $primary-text;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(0.9);
+  }
+}
+
+.tags {
+  margin-bottom: 0.5rem;
+}
+.icon {
+  font-size: 1.2rem;
+  margin: 0 0.5rem;
+}
+.backButton {
+  width: 400px;
+  background-color: $success;
+  width: $success;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media screen and (max-width: 500px) {
+  .form {
+    width: 100%;
+  }
+  .backButton {
+    width: 100%;
+  }
+  .body {
+    margin: 0 1rem;
+  }
 }

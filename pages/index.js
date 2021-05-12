@@ -3,8 +3,10 @@ import { FaSearch } from "react-icons/fa";
 import Image from "next/image";
 import ImageComponent from "../components/Image";
 import Navbar from "../components/Navbar";
+import axios from "axios";
 
-export default function Home() {
+export default function Home({ images }) {
+  console.log(images);
   return (
     <div className={styles.homepage}>
       <header className={styles.header}>
@@ -31,18 +33,17 @@ export default function Home() {
       <section className={styles.body}>
         <h3 className="title">Photos</h3>
         <div className={styles.images}>
-          <ImageComponent image="/city2.jpg" />
-          <ImageComponent image="/boywithbike.jpg" />
-          <ImageComponent image="/building.jpg" />
-          <ImageComponent image="/boywithbike.jpg" />
-          <ImageComponent image="/city2.jpg" />
-          <ImageComponent image="/city2.jpg" />
-          <ImageComponent image="/boywithbike.jpg" />
-          <ImageComponent image="/building.jpg" />
-          <ImageComponent image="/boywithbike.jpg" />
-          <ImageComponent image="/city2.jpg" />
+          {images.map((image) => (
+            <ImageComponent key={image._id} image={image.url} />
+          ))}
         </div>
       </section>
     </div>
   );
+}
+
+export async function getStaticProps(context) {
+  const result = await axios.get(`http://localhost:5000/`);
+
+  return { props: { images: result.data } };
 }
