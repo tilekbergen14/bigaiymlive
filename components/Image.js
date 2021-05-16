@@ -2,14 +2,26 @@ import styles from "../styles/Home.module.scss";
 import { FiDownload } from "react-icons/fi";
 import { MdFavoriteBorder } from "react-icons/md";
 
-export default function ImageComponent({ image }) {
+export default function ImageComponent({
+  image,
+  modal,
+  setModal,
+  setImageUrl,
+}) {
   return (
-    <div className={styles.imageBox}>
+    <div
+      className={styles.imageBox}
+      onClick={() => {
+        setModal((modal) => !modal);
+        setImageUrl(image);
+      }}
+    >
       <img
         src={`${process.env.NEXT_PUBLIC_HOST_ADDRESS}${image}`}
         alt="Images"
         className={styles.img}
       />
+
       <div className={styles.imageActions}>
         <FiDownload className={styles.imgIcon} />
         <MdFavoriteBorder className={styles.imgIcon} />

@@ -1,6 +1,20 @@
-.modul {
-  position: absolute;
-  background-color: dodgerblue;
+.body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  overflow-y: hidden;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal {
+  height: 90vh;
+  width: 90vw;
+  background-color: rgb(255, 255, 255);
 }
 .img {
   width: 100%;

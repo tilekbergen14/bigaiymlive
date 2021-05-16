@@ -4,10 +4,18 @@ import Image from "next/image";
 import ImageComponent from "../components/Image";
 import Navbar from "../components/Navbar";
 import axios from "axios";
+import Modal from "../components/Modal";
+import { useState } from "react";
 
 export default function Home({ images }) {
+  const [modal, setModal] = useState(false);
+  const [imageUrl, setImageUrl] = useState(null);
   return (
-    <div className={styles.homepage}>
+    <div
+      className={styles.homepage}
+      style={{ overflowY: "hidden", height: modal && "100vh" }}
+    >
+      {modal && <Modal imageUrl={imageUrl} setModal={setModal} />}
       <header className={styles.header}>
         <Image
           alt="header background"
@@ -34,7 +42,13 @@ export default function Home({ images }) {
         <div className={styles.images}>
           {images &&
             images.map((image) => (
-              <ImageComponent image={image.url} key={image._id} />
+              <ImageComponent
+                image={image.url}
+                key={image._id}
+                modal={modal}
+                setModal={setModal}
+                setImageUrl={setImageUrl}
+              />
             ))}
         </div>
       </section>
