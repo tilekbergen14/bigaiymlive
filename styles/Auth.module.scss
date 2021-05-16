@@ -1,0 +1,65 @@
+@import "./Colors.scss";
+.body {
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  justify-content: space-between;
+}
+.inputBox {
+  margin-top: 160px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.input {
+  margin: 0.5rem 0;
+}
+.lockIcon {
+  background: $primary-color;
+  border-radius: 50%;
+  padding: 1rem;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 2rem;
+}
+.icon {
+  font-size: 2rem;
+  color: $error;
+}
+.label {
+  font-size: 0.8rem;
+  margin: 0;
+  font-weight: 600;
+  color: $primary-color;
+  width: 100%;
+}
+.backBtn {
+  background-color: $secondary-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer {
+  margin-bottom: 16px;
+}
+.link {
+  color: $secondary-color;
+  font-weight: 600;
+  cursor: pointer;
+}
+.error {
+  width: 100%;
+  color: $error;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+@media screen and (max-width: 500px) {
+  .body {
+    margin: 0 1rem;
+  }
+}

@@ -1,21 +1,18 @@
 @import "./Colors.scss";
 .body {
-  height: 100vh;
-  min-height: 600px;
+  min-height: 700px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
-  justify-content: center;
 }
 .form {
+  margin-top: 100px;
   display: flex;
   width: 400px;
   flex-direction: column;
   box-shadow: 0 0 10px $primary-color;
   border-radius: 1rem;
   padding: 1rem;
-  margin: 1rem;
 }
 .displaynone {
   display: none;
@@ -23,6 +20,9 @@
 .imageInput {
   display: flex;
   align-items: center;
+}
+.mt20 {
+  margin-top: 20px;
 }
 .imageIcon {
   font-size: 2rem;
@@ -43,19 +43,6 @@
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
-.button {
-  margin: 1rem 0;
-  border: none;
-  outline: none;
-  padding: 0.5rem;
-  background-color: $secondary-color;
-  color: $primary-text;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  &:hover {
-    filter: brightness(0.9);
-  }
-}
 
 .tags {
   margin-bottom: 0.5rem;
@@ -66,13 +53,72 @@
 }
 .backButton {
   width: 400px;
-  background-color: $success;
-  width: $success;
+  background-color: $secondary-color;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+.title {
+  font-weight: 600;
+}
+
+.gallery {
+  margin: 20px;
+  padding: 36px;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-gap: 0.5rem;
+  grid-template-columns: 25% 25% 25% 25%;
+  margin-bottom: 50px;
+}
+.btnDelete {
+  display: none;
+}
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+.imageBox {
+  font-size: 0;
+  padding: 0;
+  background-color: $loading-color;
+  position: relative;
+  height: calc(25vw);
+  &:hover {
+    cursor: pointer;
+    .btnDelete {
+      background-color: $error;
+      display: flex;
+      position: absolute;
+      bottom: 0;
+      color: $primary-text;
+      padding: 0.5rem;
+      border-radius: 0;
+      align-items: center;
+    }
+  }
+}
+.trashIcon {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+@media screen and (max-width: 992px) {
+  .body {
+    margin: 0 1rem;
+  }
+  .imageBox {
+    height: calc(40vw);
+  }
+  .gallery {
+    grid-template-columns: 33% 33% 33%;
+  }
+}
 @media screen and (max-width: 500px) {
+  .createImage {
+    width: 100%;
+  }
   .form {
     width: 100%;
   }
@@ -81,5 +127,9 @@
   }
   .body {
     margin: 0 1rem;
+  }
+  .gallery {
+    grid-template-columns: 50% 50%;
+    padding: 0.3rem;
   }
 }

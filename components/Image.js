@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 import { FiDownload } from "react-icons/fi";
 import { MdFavoriteBorder } from "react-icons/md";

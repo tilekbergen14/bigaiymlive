@@ -6,7 +6,6 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 
 export default function Home({ images }) {
-  console.log(images);
   return (
     <div className={styles.homepage}>
       <header className={styles.header}>
@@ -33,9 +32,10 @@ export default function Home({ images }) {
       <section className={styles.body}>
         <h3 className="title">Photos</h3>
         <div className={styles.images}>
-          {images.map((image) => (
-            <ImageComponent key={image._id} image={image.url} />
-          ))}
+          {images &&
+            images.map((image) => (
+              <ImageComponent image={image.url} key={image._id} />
+            ))}
         </div>
       </section>
     </div>
@@ -43,7 +43,10 @@ export default function Home({ images }) {
 }
 
 export async function getStaticProps(context) {
-  const result = await axios.get(`http://localhost:5000/`);
-
-  return { props: { images: result.data } };
+  try {
+    const result = await axios.get(process.env.NEXT_PUBLIC_HOST_ADDRESS);
+    return { props: { images: result.data } };
+  } catch (err) {
+    return { props: { images: null } };
+  }
 }

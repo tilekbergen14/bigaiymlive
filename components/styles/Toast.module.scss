@@ -2,6 +2,7 @@
 
 .toast {
   position: absolute;
+  z-index: 4;
   color: $primary-color;
   font-weight: 700;
   padding: 1rem;

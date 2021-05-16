@@ -68,6 +68,8 @@
   display: inline-block;
   margin-bottom: 12px;
   position: relative;
+  background-color: $loading-color;
+  font-size: 0;
   &:hover {
     cursor: pointer;
     .imageActions {

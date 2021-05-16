@@ -6,7 +6,11 @@
   align-items: $alignItems;
   justify-content: $justifyContent;
 }
-
+.accountIcon {
+  font-size: 2rem;
+  display: none;
+  cursor: pointer;
+}
 .nav {
   position: fixed;
   top: 0;
@@ -42,7 +46,10 @@
   .list {
     display: none;
   }
-  .show {
-    display: block;
+  .hide {
+    display: none;
+  }
+  .accountIcon {
+    display: flex;
   }
 }
