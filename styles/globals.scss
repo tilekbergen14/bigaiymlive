@@ -26,7 +26,7 @@ a {
   border-radius: 0.3rem;
   font-weight: 600;
   justify-content: center;
-  margin-top: 0.5rem;
+  margin-top: 4px;
   cursor: pointer;
 }
 .button {
@@ -44,6 +44,17 @@ a {
     box-shadow: 0 0 20px $secondary-color;
   }
 }
+.btn-red {
+  border: 0.15em solid $error;
+  color: $primary-text;
+  box-shadow: inset 0 0 0.5em $error, 0 0 16px $error;
+  text-shadow: 0 0 5px $error, 0 0 5px $error;
+  background-color: $error;
+  &:hover {
+    background-color: $error;
+    box-shadow: 0 0 20px $error;
+  }
+}
 img {
   height: auto;
   width: 100%;
@@ -54,6 +65,9 @@ img {
   color: $primary-color;
   border-bottom: 3px solid $primary-color;
 }
+.m-16 {
+  margin: 16px;
+}
 input {
   outline: none;
   border: 2px solid $primary-color;
@@ -61,13 +75,63 @@ input {
   border-radius: 0.5rem;
   width: 100%;
 }
+.icon {
+  margin: 0 8px;
+  font-size: 16px;
+}
 .flex {
   display: flex;
   width: 100%;
+}
+.align-center {
+  align-items: center;
 }
 .justify-between {
   justify-content: space-between;
 }
 .justify-center {
   justify-content: center;
+}
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+.medium-icon {
+  font-size: 32px;
+  color: $primary-color;
+}
+.mh-600 {
+  min-height: 600px;
+}
+.flex-center {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-name {
+  font-weight: 700;
+  color: $primary-color;
+  margin: 0 0 0 8px;
+  max-width: 50%;
+}
+.radius-50 {
+  border-radius: 50%;
+}
+@media screen and (max-width: 1200px) {
+  .container {
+    padding: 0 32px;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 992px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 8px;
+  }
 }

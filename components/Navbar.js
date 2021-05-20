@@ -38,7 +38,11 @@ export default function Navbar({ fillNav, getUser }) {
         <h2 className={styles.logo}>Bigaiym</h2>
       </Link>
       <ul className={styles.lists}>
-        <MdAccountCircle className={styles.accountIcon} />
+        <Link href={user ? "upload-image/" : "auth"}>
+          <div>
+            <MdAccountCircle className={styles.accountIcon} />
+          </div>
+        </Link>
         <Link href={user ? "upload-image/" : "auth"}>
           <button className={`${styles.list} button ${styles.hide}`}>
             Create Image

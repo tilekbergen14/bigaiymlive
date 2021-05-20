@@ -5,9 +5,6 @@ import { useState } from "react";
 import { AiFillLock } from "react-icons/ai";
 import Backdrop from "../components/Backdrop";
 import { useRouter } from "next/router";
-import Toast from "../components/Toast";
-import { BiArrowBack } from "react-icons/bi";
-import Link from "next/link";
 
 export default function uploadImage() {
   const [login, setLogin] = useState(false);

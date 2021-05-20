@@ -1,6 +1,8 @@
 @import "./Colors.scss";
 .body {
   min-height: 700px;
+}
+.createImage {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,56 +65,62 @@
 }
 
 .gallery {
-  margin: 20px;
-  padding: 36px;
+  margin: 20px 0;
   width: 100%;
-  display: grid;
-  justify-content: center;
-  grid-gap: 0.5rem;
-  grid-template-columns: 25% 25% 25% 25%;
-  margin-bottom: 50px;
+  column-count: 3;
 }
-.btnDelete {
-  display: none;
-}
+
 .loading {
   display: flex;
   justify-content: center;
   margin-top: 100px;
 }
+.deleteBtn {
+  display: none;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  right: 0;
+  background-color: $primary-color;
+  border-radius: 50%;
+  border: 2px solid $error;
+  margin: 16px;
+  &:hover {
+    background-color: $error;
+    border: 2px solid $primary-color;
+    .trashIcon {
+      color: $primary-color;
+    }
+  }
+}
 .imageBox {
   font-size: 0;
   padding: 0;
+  margin-bottom: 16px;
   background-color: $loading-color;
   position: relative;
-  height: calc(25vw);
+  height: max-content;
   &:hover {
     cursor: pointer;
-    .btnDelete {
-      background-color: $error;
+    .deleteBtn {
       display: flex;
-      position: absolute;
-      bottom: 0;
-      color: $primary-text;
-      padding: 0.5rem;
-      border-radius: 0;
-      align-items: center;
     }
   }
 }
 .trashIcon {
   font-size: 1.2rem;
-  margin-right: 0.5rem;
+  color: $error;
 }
 @media screen and (max-width: 992px) {
-  .body {
-    margin: 0 1rem;
-  }
   .imageBox {
-    height: calc(40vw);
+    margin-bottom: 8px;
   }
   .gallery {
-    grid-template-columns: 33% 33% 33%;
+    column-count: 2;
+    column-gap: 8px;
   }
 }
 @media screen and (max-width: 500px) {
@@ -125,11 +133,7 @@
   .backButton {
     width: 100%;
   }
-  .body {
-    margin: 0 1rem;
-  }
   .gallery {
-    grid-template-columns: 50% 50%;
-    padding: 0.3rem;
+    column-count: 1;
   }
 }

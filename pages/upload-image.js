@@ -19,18 +19,32 @@ export default function uploadImage() {
   const [user, setUser] = useState(null);
   const [images, setImages] = useState([]);
   const [loadingImgs, setLoadingImgs] = useState(false);
-  const [hide, setHide] = useState(false);
 
   useEffect(() => {
     const getUser = JSON.parse(localStorage.getItem("user"));
     setUser(getUser);
   }, []);
 
+  const handleDelete = async (id) => {
+    setLoading(true);
+    try {
+      const result = await axios.get(
+        `${process.env.NEXT_PUBLIC_HOST_ADDRESS}delete/${id}`
+      );
+      setImages((images) => images.filter((image) => image._id !== id));
+      setLoading(false);
+      setUploaded(true);
+      setError(result.data);
+    } catch (err) {
+      setError(err.response.data ? err.response.data : "No idea");
+    }
+  };
   const getUserImages = async () => {
-    setLoadingImgs(true);
     if (user) {
       try {
-        setHide((hide) => !hide);
+        if (images.length === 0) {
+          setLoadingImgs(true);
+        }
         const result = await axios.get(
           `${process.env.NEXT_PUBLIC_HOST_ADDRESS}${user.id}`
         );
@@ -56,6 +70,7 @@ export default function uploadImage() {
           formData
         );
         if (result) {
+          setImages([...images, result.data]);
           setLoading(false);
           setUploaded(true);
           setError(null);
@@ -73,72 +88,82 @@ export default function uploadImage() {
   return (
     <div className={styles.body}>
       {loading && <Backdrop />}
-      {uploaded &&
-        (error ? (
-          <Toast setUploaded={setUploaded} text={error} error />
-        ) : (
-          <Toast setUploaded={setUploaded} text="Image uploaded succesfully!" />
-        ))}
       <Navbar fillNav={true} />
-      <div className={styles.createImage}>
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <input
-            type="file"
-            id="imageInput"
-            onChange={(e) => setFile(e.target.files[0])}
-            className={styles.displaynone}
-          />
-          <div className={styles.imageInput}>
-            <label htmlFor="imageInput">
-              <FcAddImage className={styles.imageIcon} />
-            </label>
-            <label htmlFor="imageInput">
-              <p className={styles.imageText}>
-                {file ? file.name : "No image choosen"}
-              </p>
-            </label>
-          </div>
-          <p className={styles.tags}>Tags</p>
-          <input
-            type="text"
-            placeholder="Example: nature city love ..."
-            className={styles.tagsInput}
-            onChange={(e) => setTags(e.target.value)}
-          />
-          <button className={`btn`}>Upload image</button>
-        </form>
-
-        <div className={styles.mt20}></div>
-        <Link href="/">
-          <button className={`btn ${styles.backButton}`}>
-            Back to Homepage
-          </button>
-        </Link>
-
-        <button onClick={getUserImages} className={`btn ${styles.backButton}`}>
-          {images.length > 0 ? "Hide my pictures" : "Show my images"}
-        </button>
-      </div>
-      {loadingImgs && (
-        <div className={styles.loading}>
-          <Spinner />
-        </div>
-      )}
-      <div className={styles.gallery}>
-        {images.length > 0 &&
-          hide &&
-          images.map((image) => (
-            <div className={styles.imageBox} key={image._id}>
-              <Image
-                layout="fill"
-                src={`${process.env.NEXT_PUBLIC_HOST_ADDRESS}${image.url}`}
-              />
-              <button className={`btn ${styles.btnDelete}`}>
-                <AiFillDelete className={styles.trashIcon} />
-                <p>Delete</p>
-              </button>
-            </div>
+      <div className="container">
+        {uploaded &&
+          (error ? (
+            <Toast setUploaded={setUploaded} text={error} error />
+          ) : (
+            <Toast
+              setUploaded={setUploaded}
+              text="Image uploaded succesfully!"
+            />
           ))}
+        <div className={styles.createImage}>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <input
+              type="file"
+              id="imageInput"
+              onChange={(e) => setFile(e.target.files[0])}
+              className={styles.displaynone}
+            />
+            <div className={styles.imageInput}>
+              <label htmlFor="imageInput">
+                <FcAddImage className={styles.imageIcon} />
+              </label>
+              <label htmlFor="imageInput">
+                <p className={styles.imageText}>
+                  {file ? file.name : "No image choosen"}
+                </p>
+              </label>
+            </div>
+            <p className={styles.tags}>Tags</p>
+            <input
+              type="text"
+              placeholder="Example: nature city love ..."
+              className={styles.tagsInput}
+              onChange={(e) => setTags(e.target.value)}
+            />
+            <button className={`btn`}>Upload image</button>
+          </form>
+
+          <div className={styles.mt20}></div>
+          <Link href="/">
+            <button className={`btn ${styles.backButton}`}>
+              Back to Homepage
+            </button>
+          </Link>
+
+          <button
+            onClick={getUserImages}
+            className={`btn ${styles.backButton}`}
+          >
+            {images.length > 0 ? "Refresh" : "Show my images"}
+          </button>
+        </div>
+        {loadingImgs && (
+          <div className={styles.loading}>
+            <Spinner />
+          </div>
+        )}
+        <div className={styles.gallery}>
+          {images.length > 0 &&
+            images.map((image) => (
+              <div className={styles.imageBox} key={image._id}>
+                <Image
+                  height={image.height}
+                  width={image.width}
+                  src={`${process.env.NEXT_PUBLIC_HOST_ADDRESS}${image.url}`}
+                />
+                <div
+                  className={styles.deleteBtn}
+                  onClick={() => handleDelete(image._id)}
+                >
+                  <AiFillDelete className={styles.trashIcon} />
+                </div>
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );

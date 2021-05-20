@@ -5,17 +5,47 @@ import ImageComponent from "../components/Image";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import Modal from "../components/Modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Spinner from "../components/Spinner";
 
-export default function Home({ images }) {
+export default function Home({ dfImages }) {
   const [modal, setModal] = useState(false);
-  const [imageUrl, setImageUrl] = useState(null);
+  const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [images, setImages] = useState(dfImages);
+  const [count, setCount] = useState(10);
+  useEffect(() => {
+    let mounted = true;
+    window.addEventListener("scroll", async () => {
+      const bottom =
+        Math.ceil(window.innerHeight + window.scrollY) >=
+        document.documentElement.scrollHeight;
+
+      if (bottom && mounted) {
+        setLoading(true);
+        try {
+          const result = await axios.get(
+            `${process.env.NEXT_PUBLIC_HOST_ADDRESS}?photos=${count}`
+          );
+          if (result && mounted) {
+            setImages([...images, ...result.data]);
+            setCount((count) => count + result.data.length);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    });
+    return () => {
+      mounted = false;
+    };
+  }, []);
   return (
     <div
       className={styles.homepage}
       style={{ overflowY: "hidden", height: modal && "100vh" }}
     >
-      {modal && <Modal imageUrl={imageUrl} setModal={setModal} />}
+      {modal && <Modal image={file} setModal={setModal} />}
       <header className={styles.header}>
         <Image
           alt="header background"
@@ -43,14 +73,15 @@ export default function Home({ images }) {
           {images &&
             images.map((image) => (
               <ImageComponent
-                image={image.url}
+                image={image}
                 key={image._id}
                 modal={modal}
                 setModal={setModal}
-                setImageUrl={setImageUrl}
+                setFile={setFile}
               />
             ))}
         </div>
+        <div className="flex justify-center m-16">{loading && <Spinner />}</div>
       </section>
     </div>
   );
@@ -59,8 +90,8 @@ export default function Home({ images }) {
 export async function getStaticProps(context) {
   try {
     const result = await axios.get(process.env.NEXT_PUBLIC_HOST_ADDRESS);
-    return { props: { images: result.data } };
+    return { props: { dfImages: result.data } };
   } catch (err) {
-    return { props: { images: null } };
+    return { props: { dfImages: [] } };
   }
 }
